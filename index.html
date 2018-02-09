@@ -1,14 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-body {
-    background-color: blue;
-}
-</style>
+<title>Page Title</title>
 </head>
 <body>
-<h1>The Cause Of Ocean Waves</h1>
+<img src="https://giffiles.alphacoders.com/151/151219.gif" id="img2" width ="0" height="0"/>
+<canvas id="canvas"/>
+<img src="https://imgs.tuts.dragoart.com/how-to-draw-a-surfer-for-kids_1_000000014233_5.png" id="img" width="0" height="0"/>
 
-<head>
-<body>
+<script>
+var canvas = document.getElementById("canvas")
+var ctx = canvas.getContext("2d")
+var img1 = document.getElementById("img")
+var img2 = document.getElementById("img2")
+var plrX = 0
+var SK = false
+var WK = false
+var AK = false
+var DK = false
+var plrY = 0
+canvas.width = 500
+canvas.height = 500
+
+
+setInterval(function(){
+if(SK == true){
+	plrY += 5
+}
+if(WK == true){
+	plrY -= 5
+}
+if(AK == true){
+    plrX -= 5
+}
+if(DK == true){
+    plrX += 5
+}    
+if(plrX >= -59 && plrX <= 59 && plrY >= 31 && plrY <= 169){
+	plrX = 0
+    plrY = 0
+}
+
+ctx.clearRect(0,0,500,500)
+ctx.drawImage(img2,0,0,500,500)
+ctx.fillStyle = "rgba(0,0,0,1)"
+ctx.fillRect(0,100,20,20)
+ctx.drawImage(img1,plrX,plrY,60,60)
+},1000/60)
+document.onkeydown = function(e){
+	e=e||window.event
+    var res = String.fromCharCode(e.keyCode)
+    if(res == "S"){
+    	SK = true
+    }
+    if(res == "W"){
+    	WK = true
+    }
+    if(res == "A"){
+        AK = true
+    } 
+    if(res == "D"){
+        DK = true
+    }     
+}
+document.onkeyup = function(e){
+	e=e||window.event
+    var res = String.fromCharCode(e.keyCode)
+    if(res == "S"){
+    	SK = false
+    }
+    if(res == "W"){
+    	WK = false
+    }
+    if(res == "A"){
+        AK = false
+    }
+    if(res == "D"){
+        DK = false
+    }    
+}
+</script>
+</body>
+</html>
